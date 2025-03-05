@@ -1,0 +1,19 @@
+env
+
+
+__py_cache__/
+*.pyc
+.vscode
+wandb
+wandb_cache
+
+# plots
+*.png
+*.html
+./plots*
+*.pdf
+
+# logs
+*.log
+*.csv
+logs*

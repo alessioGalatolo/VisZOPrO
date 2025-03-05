@@ -1,0 +1,7 @@
+accelerate==1.3.0
+datasets==3.1.0
+peft==0.14.0
+torch==2.5.1
+transformers==4.47.1
+git+https://github.com/alessioGalatolo/trl.git@ca1dd277ede9e87bb894e36b16fa97d86aa87981  # my personal fix on the problem with DDP in distributed training and missing PEFT support
+wandb==0.19.1
