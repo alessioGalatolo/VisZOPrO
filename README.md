@@ -14,6 +14,7 @@ Folder structure:
 └── README.md  # this file
 ```
 
+Also check interactive versions of the visualisations shown in the paper [here](https://alessiogalatolo.github.io/VisZOPrO/).
 ## Quick-start
 To quickly start using Zeroth-Order Preference Optimisation, follow these steps:
 
