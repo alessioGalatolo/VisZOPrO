@@ -1,6 +1,8 @@
 # Visualising Policy-Reward Interplay to Inform Zeroth-Order Preference Optimisation of Large Language Models
 This is the code relative to the paper `Visualising Policy-Reward Interplay to Inform Zeroth-Order Preference Optimisation of Large Language Models`.
 
+![Figure showing our method](./figure.png)
+
 Folder structure:
 ```sh
 ├── vis_zopro/
