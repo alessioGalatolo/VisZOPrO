@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <title>Policy-Reward Visualisations</title>
+    <!-- Load required Bootstrap and BootstrapVue CSS -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.css" />
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="https://unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue-icons.min.js"></script>
+
+  </head>
+  <body>
+  <h1>Policy-Reward Visualisations (Click to show)</h2>
+    
+    <style>
+      /* Ensure full height and remove margins */
+      html, body, #app {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    
+      /* Make the app a flex column */
+      #app {
+        display: flex;
+        flex-direction: column;
+      }
+    
+      /* The accordion should also be a flex column */
+      .accordion {
+        display: flex;
+        flex-direction: column;
+        flex: 1; /* Allow the collapsible section to fill remaining space */
+      }
+    
+      /* Headers stay at the top */
+      .header-container {
+        flex: none;
+      }
+    
+      /* Collapse container takes up the remaining height */
+      .collapse-container {
+        flex: 1;
+        overflow: hidden; /* Ensure no extra scrolling unless necessary */
+      }
+    
+      /* Remove card padding/margin */
+      .collapse-container .b-card {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: none; /* Optional: Remove card borders */
+      }
+    
+      /* Ensure object fills the entire card */
+      .collapse-container object {
+        height: 100%;
+        width: 100%;
+        display: block; /* Remove any default inline spacing */
+      }
+    </style>
+    
+    <div id="app">
+      <div class="accordion" role="tablist">
+        
+        <!-- Header container: displayed as a row of headers -->
+        <div class="header-container d-flex flex-wrap gap-2 p-2">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block 
+                      v-b-toggle.collapse-1 
+                      :variant="isCollapseOpenOne ? 'primary' : 'outline-primary'">
+              Online DPO, reduced with t-SNE
+            </b-button>
+          </b-card-header>
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block 
+                      v-b-toggle.collapse-2 
+                      :variant="isCollapseOpen2 ? 'primary' : 'outline-primary'">
+              Online DPO, reduce with UMAP
+            </b-button>
+          </b-card-header>
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block 
+                      v-b-toggle.collapse-3 
+                      :variant="isCollapseOpen3 ? 'primary' : 'outline-primary'">
+              RLOO, reduced with t-SNE
+            </b-button>
+          </b-card-header>
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-button block 
+                      v-b-toggle.collapse-4 
+                      :variant="isCollapseOpen4 ? 'primary' : 'outline-primary'">
+              RLOO, reduce with UMAP
+            </b-button>
+          </b-card-header>
+        </div>
+        
+        <!-- Collapsible content container: fills the remaining space -->
+        <div class="collapse-container">
+          
+          <b-collapse id="collapse-1" visible accordion="my-accordion" role="tabpanel" class="h-100"
+                    @show="isCollapseOpenOne = true" @hidden="isCollapseOpenOne = false">
+            <b-card v-if="isCollapseOpenOne" class="h-100">
+              <object data="plots/online_dpo_tsne.html" loading="lazy">
+                Something went wrong while loading the interactive projections, please try changing your browser.
+              </object>
+            </b-card>
+          </b-collapse>
+          
+          <b-collapse id="collapse-2" visible accordion="my-accordion" role="tabpanel" class="h-100"
+                    @show="isCollapseOpen2 = true" @hidden="isCollapseOpen2 = false">
+            <b-card v-if="isCollapseOpen2" class="h-100">
+              <object data="plots/online_dpo_umap.html" loading="lazy">
+                Something went wrong while loading the interactive projections, please try changing your browser.
+              </object>
+            </b-card>
+          </b-collapse>
+          
+          <b-collapse id="collapse-3" visible accordion="my-accordion" role="tabpanel" class="h-100"
+                    @show="isCollapseOpen3 = true" @hidden="isCollapseOpen3 = false">
+            <b-card v-if="isCollapseOpen3" class="h-100">
+              <object data="plots/rloo_tsne.html" loading="lazy">
+                Something went wrong while loading the interactive projections, please try changing your browser.
+              </object>
+            </b-card>
+          </b-collapse>
+          
+          <b-collapse id="collapse-4" visible accordion="my-accordion" role="tabpanel" class="h-100"
+                    @show="isCollapseOpen4 = true" @hidden="isCollapseOpen4 = false">
+            <b-card v-if="isCollapseOpen4" class="h-100">
+              <object data="plots/rloo_umap.html" loading="lazy">
+                Something went wrong while loading the interactive projections, please try changing your browser.
+              </object>
+            </b-card>
+          </b-collapse>
+          
+        </div>
+      </div>
+    </div>
+    
+    
+    
+
+
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            isCollapseOpenOne: true,
+            isCollapseOpen2: false,
+            isCollapseOpen3: false,
+            isCollapseOpen4: false,
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
